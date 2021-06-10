@@ -1,0 +1,71 @@
+			.woocommerce-error:nth-child(3) > li:nth-child(1) {
+ font-weight: bold;
+ font-style: normal;
+}
+
+.woocommerce-error:nth-child(2) > li:nth-child(1) {
+ font-weight: bold;
+ font-style: normal;
+}
+
+.woocommerce-info {
+ font-weight: bold;
+ font-style: normal;
+}
+
+#send_images_and_place_order {
+ font-weight: bold;
+ font-style: normal;
+ font-size: 17px;
+ font-family: Montserrat;
+ text-align: center;
+ width: 355px;
+ height: 70px;
+}
+
+.revelados-button.revelados-mb-3.revelados-button-primary {
+ font-family: Montserrat;
+ font-weight: bold;
+ font-style: normal;
+ margin-top: 10px;
+}
+
+/*
+h3:nth-child(2) {
+ font-family: Montserrat;
+ font-weight: 500;
+ font-style: normal;
+ font-size: 24px;
+}
+
+.revelados-images-manager-header {
+ background-color: rgb(0, 0, 0);
+ background-blend-mode: normal;
+}
+*/
+
+.revelados-images-manager-header {
+ background-color: rgb(41, 41, 41) !important;
+ background-blend-mode: normal;
+}
+
+h3:nth-child(2) {
+ font-size: 20px;
+}
+
+.xoo-wsc-toggle-slider {
+ font-size: 16px !important;
+}
+
+.xoo-wsc-ecl {
+ font-size: 18px !important;
+}
+
+/* Color y tamaño aviso en mini carrito compra minima */
+.elementor-menu-cart__products.woocommerce-mini-cart.cart.woocommerce-cart-form__contents {
+ color: rgb(221, 0, 0);
+ font-weight: bold;
+ font-style: normal;
+ line-height: 18px;
+ padding-bottom: 15px;
+}		
