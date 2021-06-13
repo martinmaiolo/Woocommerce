@@ -1,0 +1,10 @@
+function redirect_after_success() {
+
+  if ($_SERVER['REQUEST_URI']=='/wp-login.php?checkemail=registered'){
+
+     $redirect_url = get_bloginfo('url') . '/register';
+     wp_redirect( $redirect_url );
+  exit;
+}
+}
+add_action('login_head','redirect_after_success');
