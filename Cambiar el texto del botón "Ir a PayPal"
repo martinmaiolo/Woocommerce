@@ -1,0 +1,12 @@
+/* Change the "Proceed to PayPal" button text in the WooCommerce checkout screen
+* Add this to your theme's functions.php file
+*/
+add_filter( 'gettext', 'custom_paypal_button_text', 20, 3 );
+function custom_paypal_button_text( $translated_text, $text, $domain ) {
+   switch ( $translated_text ) {
+      case 'Ir a PayPal' :
+         $translated_text = __( 'Finalizar Compra', 'woocommerce' );
+         break;
+   }
+   return $translated_text;
+}
