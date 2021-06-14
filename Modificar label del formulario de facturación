@@ -1,0 +1,11 @@
+// Modificamos los campos que queramos - $fields es el array que pasamos a través del filtro.
+function custom_override_checkout_fields( $fields ) {
+     $fields['billing']['billing_last_name'] = array(
+        'label'     => __('Apellidos', 'woocommerce'),
+    'required'  => true,
+    'class'     => array('form-row-last', 'validate-required', 'woocommerce-invalid', 'woocommerce-invalid-required'),
+    'clear'     => true
+     );
+ 
+     return $fields;
+}
