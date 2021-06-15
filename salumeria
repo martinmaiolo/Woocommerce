@@ -1,0 +1,85 @@
+/*
+add_filter('woocommerce_checkout_fields', 'local_pickup_remove_billing_checkout_fields');
+
+function local_pickup_remove_billing_checkout_fields($fields) {
+	$chosen_methods = WC()->session->get( 'chosen_shipping_methods' );
+	$chosen_shipping = $chosen_methods[0];
+	if ( 0 === strpos( $chosen_shipping, 'local_pickup:1' ) ) {
+	
+        unset($fields['billing']['billing_address_1']);	// Eliminar el campo Dirección 1
+        unset($fields['billing']['billing_address_2']);	// Eliminar el campo Dirección 2
+		unset($fields['billing']['billing_postcode']);	// Elimina el Código Postal
+		unset($fields['billing']['billing_state']);		// Elimina la Provincia
+		unset($fields['billing']['billing_country']);	// Elimina el País
+    }
+    return $fields;
+}
+*/
+
+function refresh_checkout_on_payment_methods_change(){
+    ?>
+    <script type="text/javascript">
+		//console.log('empieza la fiesta');
+		jQuery(document).on('ready', function(){
+			jQuery('p#shipping_esparaotrapersona_field input').on('change', function(){
+			    var valor = jQuery(this).val();
+			    if(valor == 'true'){
+			        jQuery('p#billing_telefonodestinatario_field').fadeIn();
+			        jQuery('p#billing_nombredestinatario_field').fadeIn();
+			    }else{
+			        jQuery('p#billing_telefonodestinatario_field').fadeOut();
+			        jQuery('p#billing_nombredestinatario_field').fadeOut();
+			    }
+			});
+			jQuery('p#shipping_esparaotrapersona_field input').trigger('change');
+			jQuery('p#shipping_enviolocal_field input').on('change', function(){
+			    var valor = jQuery(this).val();
+			    if(valor == 'true'){
+			        jQuery('label[for="shipping_method_0_local_pickup1"]').trigger('click');
+			        jQuery('p#billing_address_1_field').fadeOut();
+			        jQuery('p#billing_postcode_field').fadeOut();
+			        jQuery('p#billing_city_field').fadeOut();
+			        jQuery('p#billing_state_field').fadeOut();
+			        jQuery('p#orddd_locations_field').fadeOut();
+			        jQuery('p#e_deliverydate_field').fadeOut();
+			        jQuery('p#billing_country_field').fadeOut();
+			    }else{
+			        jQuery('label[for="shipping_method_0_flat_rate6"]').trigger('click');
+			        jQuery('p#billing_address_1_field').fadeIn();
+			        jQuery('p#billing_postcode_field').fadeIn();
+			        jQuery('p#billing_city_field').fadeIn();
+			        jQuery('p#billing_state_field').fadeIn();
+			        jQuery('p#orddd_locations_field').fadeIn();
+			        jQuery('p#e_deliverydate_field').fadeIn();
+			        jQuery('p#billing_country_field').fadeIn();
+			    }
+			});
+			jQuery('p#shipping_enviolocal_field input').trigger('change');
+		});
+    </script>
+    <?php
+}
+
+add_action( 'woocommerce_review_order_before_payment', 'refresh_checkout_on_payment_methods_change' );
+
+function refresh_checkout_after_shipping(){
+    ?>
+    <script type="text/javascript">
+		//console.log('empieza la fiesta 2');
+			setTimeout(function(){
+				//console.log('paso el tiempo 2');
+			    jQuery('ul#shipping_method input').on('click', function(){
+			        var envio = jQuery(this).val();
+			        if(envio == 'local_pickup:1'){
+			            jQuery('label[for="shipping_enviolocal_true"]').trigger('click');
+			            jQuery('p#orddd_locations_field').fadeOut();
+			        }else{
+			            jQuery('label[for="shipping_enviolocal_false"]').trigger('click');
+			        }
+			    });
+			},1000);
+    </script>
+    <?php
+}
+
+add_action( 'woocommerce_review_order_after_shipping', 'refresh_checkout_after_shipping' );
