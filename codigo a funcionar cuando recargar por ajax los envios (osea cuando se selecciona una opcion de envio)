@@ -1,0 +1,12 @@
+function refresh_checkout_after_shipping(){
+    ?>
+    <script type="text/javascript">
+		//console.log('empieza la fiesta 2');
+			setTimeout(function(){
+			      //codigo a funcionar cuando recargar por ajax los envios (osea cuando se selecciona una opcion de envio)
+			},1000);
+    </script>
+    <?php
+}
+
+add_action( 'woocommerce_review_order_after_shipping', 'refresh_checkout_after_shipping' );
