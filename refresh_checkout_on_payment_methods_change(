@@ -1,0 +1,11 @@
+function refresh_checkout_on_payment_methods_change(){
+    ?>
+    <script type="text/javascript">
+		//console.log('empieza la fiesta');
+		jQuery(document).on('ready', function(){
+			// codigo a funcionar cuando carga el checkout
+		});
+    </script>
+    <?php
+}
+add_action( 'woocommerce_review_order_before_payment', 'refresh_checkout_on_payment_methods_change' );
