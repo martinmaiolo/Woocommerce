@@ -1,0 +1,17 @@
+ <?php
+	$trail     = '';
+    $home      = '/<a href="' . get_home_url() . '">Home</a>';
+    $query_obj = get_queried_object();
+    $term_id   = $query_obj->term_id;
+    $taxonomy  = get_taxonomy( $query_obj->taxonomy );
+ 
+    if ( $term_id && $taxonomy ) {
+        // Add taxonomy label name to the trail.
+        $trail .=  '/' . $taxonomy->labels->menu_name;
+        // Add term parents to the trail.
+        $trail .= '/' . get_term_parents_list( $term_id, $taxonomy->name, array( 'inclusive' => false ) );
+    }
+ 
+    // Print trail and add current term name at the end.
+    echo '<p class="breadcrumb-trail">' . $home . $trail . $query_obj->name . '</p>';
+ ?>
