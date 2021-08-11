@@ -1,0 +1,7 @@
+.woocommerce-MyAccount-navigation {
+display:none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+    width: 100%;
+}
