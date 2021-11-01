@@ -1,0 +1,10 @@
+
+<?php
+//Traducir con gettext
+add_filter( 'gettext', 'af_filter_gettext', 10, 3 );
+function af_filter_gettext( $translated, $original, $domain ) {
+    if ( $translated == "Sign up now" ) {
+        $translated = "Comprar";
+    }
+    return $translated;
+}
